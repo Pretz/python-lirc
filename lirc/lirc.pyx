@@ -183,7 +183,9 @@ def nextcode():
     _is_init_or_error()
 
     cdef char * code
-    if lirc_client.lirc_nextcode(&code) == -1:
+    with nogil:
+        result = lirc_client.lirc_nextcode(&code)
+    if result == -1:
         free(code)
         raise NextCodeError("There was an error reading the next code.")
     if code == NULL:

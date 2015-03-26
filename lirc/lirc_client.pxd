@@ -1,4 +1,4 @@
-cdef extern from "lirc/lirc_client.h":
+cdef extern from "lirc/lirc_client.h" nogil:
     cdef struct lirc_config:
         pass
 
